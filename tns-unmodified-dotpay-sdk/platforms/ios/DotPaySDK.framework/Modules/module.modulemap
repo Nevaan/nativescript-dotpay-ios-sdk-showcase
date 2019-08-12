@@ -1,0 +1,6 @@
+framework module DotPaySDK {
+  umbrella header "DotPaySDK.h"
+
+  export *
+  module * { export * }
+}
