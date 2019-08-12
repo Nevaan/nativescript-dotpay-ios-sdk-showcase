@@ -1,0 +1,9 @@
+{
+    "name": "tns-pod-dotpay",
+    "version": "0.0.1",
+    "nativescript": {
+      "platforms": {
+        "ios": "6.0.2"
+      }
+    }
+  }
