@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+declare var DotPay;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,5 +16,8 @@ export class HomeComponent implements OnInit {
 
   callDotpaySdk() {
     console.log("Hello!");
+    // Desired executed code (in objective-C)
+    // [DotPay sharedInstance].debugMode = YES;
+    DotPay.sharedInstance().debug = true;
   }
 }

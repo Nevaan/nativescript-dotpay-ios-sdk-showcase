@@ -1,27 +1,45 @@
-This branch presents project with whole lib (DotPay SDK) added to platforms/ios directory.
-It is not compiling correctly (and not generating typings)
+This branch presents project with whole lib (DotPay SDK) added to platforms/ios directory. 
+Info.plist was modified - I changed CFBundlePackageType entry from BNDL to FMWK. It allows build to complete sucessfully and generate typings, but typing for DotPaySDK are missing - and the effect is the same like attaching the Podfile - 
 
-Output available after running this command:
 ```
-TNS_TYPESCRIPT_DECLARATIONS_PATH="$(pwd)/typings" tns build ios
+CONSOLE ERROR [native code]: ERROR ReferenceError: Can't find variable: DotPay
+CONSOLE ERROR [native code]: ERROR CONTEXT {
+"view": {
+"def": {
+"nodeFlags": 33603585,
+"rootNodeFlags": 33554433,
+"nodeMatchedQueries": 0,
+"flags": 0,
+"nodes": [
+{
+"nodeIndex": 0,
+"parent": null,
+"renderParent": null,
+"bindingIndex": 0,
+"outputIndex": 0,
+"checkIndex": 0,
+"flags": 33554433,
+"childFlags": 49152,
+"directChildFlags": 49152,
+"childMatchedQueries": 0,
+"matchedQueries": {},
+"matchedQueryIds": 0,
+"references": {},
+"ngContentIndex": null,
+"childCount": 1,
+"bindings": [
+{
+"flags": 8,
+"ns": "",
+"name": "title",
+"nonMinifiedName": "title",
+"securityContext": 0
+}
+],
+"bindingFlags": 8,
+"outputs": [],
+"element": {
+"ns": "",
+"name": "ActionBar"<…>
 ```
 
-And giving this error (not generating typings at all): 
-```
-The bundle at $PROJECT_PATH/nativescript-dotpay-ios-sdk-showcase/node_modules/tns-unmodified-dotpay-sdk/platforms/ios/DotPaySDK.framework does not appear to be a dynamic framework.
-```
-
-Building with command (trace logging) 
-```
-tns build ios --log trace
-```
-
-Gives a hint, that something is wrong when running these lines from ios-project-service.js
-```
-  const packageType = plistJson["CFBundlePackageType"];
-        if (packageType !== "FMWK") {
-            this.$errors.failWithoutHelp("The bundle at %s does not appear to be a dynamic framework.", libraryPath);
-        }
-```
-
-So, on the branch **modified-sdk-source** you can find version with Info.plist modified manually
